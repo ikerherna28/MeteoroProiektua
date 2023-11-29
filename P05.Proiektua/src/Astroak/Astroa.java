@@ -14,12 +14,7 @@ public class Astroa implements intAstro {
 	protected String izena;
 	
 	/** The masa. */
-	protected void name() {
-		
-	} double masa;
-	
-	/** The Konposizioa. */
-	protected String Konposizioa;
+	protected double masa;
 	
 	/** The data aktibitate. */
 	protected LocalDate dataAktibitate;
@@ -40,63 +35,6 @@ public class Astroa implements intAstro {
     /** The de minutoak. */
 	protected String iruzkina;
 	
-	//Klase eraikitzaileak	
-	
-	/**
-	 * Instantiates a new meteorito.
-	 *
-	 * @param izena the izena
-	 * @param masa the masa
-	 * @param dataAktibitate the data aktibitate
-	 * @param Konposizioa the konposizioa
-	 * @param raGraduak the ra graduak
-	 * @param raMinutoak the ra minutoak
-	 * @param deGraduak the de graduak
-	 * @param deMinutoak the de minutoak
-	 */
-    
-	Astroa(String izena, double masa, LocalDate dataAktibitate, String Konposizioa, Koordenatuak raGraduak,
-			Koordenatuak raMinutoak, Koordenatuak deGraduak, Koordenatuak deMinutoak)
-	{
-		this.izena 			= izena;
-		this.masa			= masa;
-		this.dataAktibitate = dataAktibitate;
-		this.Konposizioa 	= Konposizioa;
-		this.raGraduak 		= raGraduak;
-		this.raMinutoak 	= raMinutoak;
-		this.deGraduak 		= deGraduak;
-		this.deMinutoak 	= deMinutoak;
-		
-	}
-	
-	/**
-	 * Instantiates a new meteorito.
-	 *
-	 * @param izena the izena
-	 * @param masa the masa
-	 * @param dataAktibitate the data aktibitate
-	 * @param Konposizioa the konposizioa
-	 * @param raGraduak the ra graduak
-	 * @param raMinutoak the ra minutoak
-	 * @param deGraduak the de graduak
-	 * @param deMinutoak the de minutoak
-	 * @param iruzkina the iruzkina
-	 */
-	Astroa(String izena, double masa, LocalDate dataAktibitate, String Konposizioa, Koordenatuak raGraduak,
-			Koordenatuak raMinutoak, Koordenatuak deGraduak, Koordenatuak deMinutoak, String iruzkina)
-	{	
-		this.izena 			= izena;
-		this.masa			= masa;
-		this.dataAktibitate = dataAktibitate;
-		this.Konposizioa 	= Konposizioa;
-		this.raGraduak 		= raGraduak;
-		this.raMinutoak 	= raMinutoak;
-		this.deGraduak 		= deGraduak;
-		this.deMinutoak 	= deMinutoak;
-		this.iruzkina		= iruzkina;
-	}
-
-	
 	/**
 	 * Gets the izena.
 	 *
@@ -114,24 +52,6 @@ public class Astroa implements intAstro {
 	 */
 	public void setIzena(String izena) {
 		this.izena = izena;
-	}
-	
-	/**
-	 * Gets the konposizioa.
-	 *
-	 * @return the konposizioa
-	 */
-	public String getKonposizioa() {
-		return Konposizioa;
-	}
-	
-	/**
-	 * Sets the konposizioa.
-	 *
-	 * @param konposizioa the new konposizioa
-	 */
-	public void setKonposizioa(String konposizioa) {
-		Konposizioa = konposizioa;
 	}
 
 	/**
