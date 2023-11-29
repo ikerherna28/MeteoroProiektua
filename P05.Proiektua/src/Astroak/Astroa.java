@@ -261,3 +261,6 @@ public class Astroa implements intAstro {
 	}
 	
 }
+
+
+// KAIXO FROGA
