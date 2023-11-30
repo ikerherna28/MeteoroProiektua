@@ -16,9 +16,6 @@ public class Astroa implements intAstro {
 	/** The masa. */
 	protected double masa;
 	
-	/** The data aktibitate. */
-	protected LocalDate dataAktibitate;
-	
 	/** The ra graduak. */
 	//Zeruko posizioa ateratzeko aldagaiak
 	protected Koordenatuak raGraduak;
@@ -144,23 +141,6 @@ public class Astroa implements intAstro {
 		this.raMinutoak = raMinutoak;
 	}
 	 
-	/**
-	 * Sets the data aktibitate.
-	 *
-	 * @param dataAktibitate the new data aktibitate
-	 */
-	public void setDataAktibitate(LocalDate dataAktibitate) {
-		this.dataAktibitate = dataAktibitate;
-	}
-	
-	/**
-	 * Gets the data aktibitate.
-	 *
-	 * @return the data aktibitate
-	 */
-	public LocalDate getDataAktibitate() {
-		return dataAktibitate;
-	}	
 	
 	/**
 	 * Gets the iruzkina.
