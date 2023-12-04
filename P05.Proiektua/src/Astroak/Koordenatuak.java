@@ -1,5 +1,7 @@
 package Astroak;
 
+import java.util.Scanner;
+
 /**
  * The Class Koordenatuak.
  */
@@ -70,4 +72,6 @@ class Koordenatuak {
 
 		return (int) orduak + " H " + (int) Min + " Min " + (int) Seg + " Seg";
 	}
+		
+	
 }

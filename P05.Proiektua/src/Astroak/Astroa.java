@@ -1,6 +1,7 @@
 package Astroak;
 
 import java.time.*;
+import java.util.Scanner;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -160,4 +161,103 @@ public class Astroa implements intAstro {
 		this.iruzkina = iruzkina;
 	}
 	
+	/**
+	 * Astroen menu printzipala.
+	 *
+	 * @return menu
+	 */
+	public static String menuAstro() {
+		
+		String menu = "\n_____________________________________________________\n";
+		menu+="\nASTRO KUDEAKETA\n\n";
+		menu+="1. Astro ezberdinen kudeaketa\n";
+		menu+="2. Astro bat ezabatu\n";
+		menu+="3. Astroak datuaren arabera listatu\n";
+		menu+="4. Bukatu exekutatzen\n";
+		menu+="\n____________________________________________________\n";
+		menu+="\nAukeratu bat\n";
+		
+		return menu;
+	}
+	
+	/**
+	 * Astro mota aukeratzeko menua.
+	 *
+	 * @return menu
+	 */
+	public static String menuAstroAukeratu() {
+		
+		String menu ="\nAukeratu zein astro mota nahi duzun kudeatu\n\n";
+		menu+="1. Asteroideak\n";
+		menu+="2. Planetak\n";
+		menu+="3. Kometak\n";
+		menu+="4. Meteoroak\n";
+		menu+="\nAukeratu bat:\n";
+		
+		return menu;
+	}
+	
+	/**
+	 * Aukera kontrola erroreak ez egoteko.
+	 *
+	 * @param menu 		--> Aukeraketa ezberdinak ikusteko menua
+	 * @param aukeraDa  --> true/false motakoa
+	 * @param aukera 	--> erabiltzaileak egingo duen aukera irakurtzeko
+	 * @param scanner 	--> erabiltzaileak datuak sartzeko
+	 * @param tarte1 	--> aukeraketa menuaren tarte minimoa
+	 * @param tarte2 	--> aukeraketa menuaren tarte maximoa
+	 * @return aukera, erabiltzaileak egin duen aukera.
+	 */
+	public static int aukeraKontrola(String menu, boolean aukeraDa, int aukera, Scanner scanner, int tarte1, int tarte2) {
+		while (!aukeraDa) {
+			System.out.print(menu);
+			String input = scanner.nextLine();
+
+			try {
+				aukera = Integer.parseInt(input);
+
+				if (aukera >= tarte1 && aukera <= tarte2) {
+					aukeraDa = true;
+					return aukera;
+				} else {
+					System.out.println("Sartu duzun zenbakia ez da " + tarte1 + "-" + tarte2 + " tartekoa.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Zenbaki bat sartu behar duzu.");
+			}
+		}
+		return aukera;
+	}
+	
+	/**
+	 * Zerrenda kontrola, zerrendako gauza bat aukeratu nahi denean kontrolatzeko.
+	 *
+	 * @param mezua 		 --> eskakizun ezberdinak jartzeko
+	 * @param aukeraDa 		 --> true/false motakoa
+	 * @param aukera		 --> Erabiltzaileak zerredatik hartu duen aukera
+	 * @param scanner 		 --> zerrendako aukera irakurtzeko
+	 * @param zerrendaLuzera --> zerrendaren luzeera errore kontrola egiteko
+	 * @return aukera, erabiltzaileak egindako aukera
+	 */
+	public static int zerrendaKontrola(String mezua, boolean aukeraDa, int aukera, Scanner scanner, int zerrendaLuzera) {
+		while (!aukeraDa) {
+			System.out.print(mezua);
+			String input = scanner.nextLine();
+
+			try {
+				aukera = Integer.parseInt(input);
+
+				if (aukera >= 0 && aukera <= zerrendaLuzera) {
+					aukeraDa = true;
+					return aukera;
+				} else {
+					System.out.println("Sartutako zenbakia zerrendatik kanpo dago");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Zenbaki bat sartu behar duzu.");
+			}
+		}
+		return aukera;
+	
+	}
 }
