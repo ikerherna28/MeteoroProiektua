@@ -1,73 +1,19 @@
 package Astroak;
 
-/**
- * The Class Koordenatuak.
- */
-// Koordenatuak klasea, Gradu, minutu eta segundoak gordetzeko klasea.
-class Koordenatuak {
+public class Koordenatuak {
+    private double graduak;
+    private double minutuak;
 
-	/** The zenbakia. */
-	private double zenbakia;
+    public Koordenatuak(double graduak, double minutuak) {
+        this.graduak = graduak;
+        this.minutuak = minutuak;
+    }
 
-	/**
-	 * Instantiates a new koordenatuak.
-	 *
-	 * @param zenbakia the zenbakia
-	 */
+    public double getGraduak() {
+        return graduak;
+    }
 
-	public Koordenatuak(double zenbakia) {
-		this.zenbakia = zenbakia;
-	}
-
-	/**
-	 * Gets the zenbakia.
-	 *
-	 * @return the zenbakia
-	 */ 
-
-	public double getZenbakia() {
-		return zenbakia;
-	}
-
-	/**
-	 * Sets the zenbakia.
-	 *
-	 * @param zenbakia the new zenbakia
-	 */
-	public void setZenbakia(double zenbakia) {
-		this.zenbakia = zenbakia;
-	}
-
-	/**
-	 * To string graduak.
-	 *
-	 * @return the string
-	 */
-
-	public String toStringGraduak() {
-
-		double graduak = zenbakia;
-		double Min = graduak % 1;	
-		Min *= 60;
-		double Seg = Min % 1;
-		Seg *= 60;
-
-		return (int)graduak + "º " + (int)Min + "' " + (int)Seg + "\"";
-	}
-
-	/**
-	 * To string orduak.
-	 *
-	 * @return the string
-	 */
-	public String toStringOrduak() {
-
-		double orduak = zenbakia;
-		double Min = orduak % 1;	
-		Min *= 60;
-		double Seg = Min % 1;
-		Seg *= 60;
-
-		return (int) orduak + " H " + (int) Min + " Min " + (int) Seg + " Seg";
-	}
+    public double getMinutuak() {
+        return minutuak;
+    }
 }
