@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * The Class Meteorito.
  */
-public class Astroa implements intAstro {
+public class Astroa {
 
 
 	// Atributuoak definitu
