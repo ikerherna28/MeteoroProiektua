@@ -280,74 +280,6 @@ public class Asteroidea extends Astroa{
     }
 	
 	/**
-	 * Koordenatua irakurri graduako formatuan eta errore kontrola.
-	 *
-	 * @param mezua --> koordenatu motaren mezua
-	 * @return koordenatu objektua
-	 */
-	public static Koordenatuak koordenatuaIrakurriGraduak(String mezua) {
-
-		double graduak;
-		boolean baliozkoa = false;
-		Koordenatuak koordenatu = new Koordenatuak(0);
-		Scanner scanner = new Scanner(System.in);
-
-		try {
-			while (!baliozkoa) {
-				System.out.print(mezua);
-				String sarrera = scanner.nextLine();
-
-				try {
-					graduak = Double.parseDouble(sarrera);
-					koordenatu.setZenbakia(graduak);
-					baliozkoa = true;
-				} catch (NumberFormatException e) {
-					System.out.println("Balio okerra. Mesedez, sartu zenbaki bat.");
-				}
-			}
-		} finally {
-			
-		}
-		return koordenatu;	
-	}
-	
-	/**
-	 * Koordenatua irakurri minututako formatuan eta errore kontrola.
-	 *
-	 * @param mezua --> koordenatu motaren mezua
-	 * @return koordenatu objektua
-	 */
-	public static Koordenatuak koordenatuaIrakurriMinutoak(String mezua) {
-
-		double minutoak = 0;
-		boolean baliozkoa = false;
-		Koordenatuak koordenatu = new Koordenatuak(0);
-		Scanner scanner = new Scanner(System.in);
-
-		try {
-			while (!baliozkoa) {
-				System.out.print(mezua);
-				String sarrera = scanner.nextLine();
-
-				try {
-					minutoak = Double.parseDouble(sarrera);
-					if (minutoak >= 0 && minutoak <= 3600) {
-						koordenatu.setZenbakia(minutoak);
-						baliozkoa = true;
-					}	else if (minutoak < 0) {
-						System.out.println("Zenbaki negatiboa, 24 orduko formatua erabili (0 < minutoak < 3600)");
-					}
-				} catch (NumberFormatException e) {
-					System.out.println("Balio okerra. Mesedez, sartu zenbaki bat.");
-				}
-			}
-		} finally {
-			
-		}		
-		return koordenatu;		
-	}
-	
-	/**
 	 * Erabiltzaileari asteroidearen aldagaiak eskatzeko metodoa.
 	 *
 	 * @return asteroide berriaren datuak
@@ -370,7 +302,7 @@ public class Asteroidea extends Astroa{
 			}
 		}
 		
-		aukeraDa = false;
+		aukeraDa = false; 
 		
 		// Asteroidearen masa sartzeko errore kontrola
 		while (!aukeraDa) {
@@ -473,6 +405,7 @@ public class Asteroidea extends Astroa{
 			}
 		}
 
+		// Iruzkin bat sartzeko aukera
 		System.out.print("Iruzkin bat edo beste daturen bat sartu nahi duzu? (BAI/EZ): ");
 		String emaitza = scanner.nextLine();
 
@@ -530,7 +463,7 @@ public class Asteroidea extends Astroa{
 		
 		String menu = "\nDATU AUKERAKETA\n";
 		menu+="1. Diametroaren arabera\n";
-		menu+="2. Abiaduraren arabera\n";
+		menu+="2. Abiadura angeluarraren arabera\n";
 		menu+="3. Distantziaren arabera\n";
 		menu+="\nAukeratu bat:\n";
 		
@@ -659,7 +592,7 @@ public class Asteroidea extends Astroa{
 
 		String azkenekoIzena = asteroide.getIzena();
 
-		// Sortutako meteoro berriko datuak eskatutako meteoroan sartu, datuak eguneratzeko
+		// Sortutako asteroide berriko datuak eskatutako asteroide sartu, datuak eguneratzeko
 		asteroide.setIzena(asteroideBerria.getIzena());
 		asteroide.setMasa(asteroideBerria.getMasa());
 		asteroide.setRaGraduak(asteroideBerria.getRaGraduak());
@@ -675,5 +608,4 @@ public class Asteroidea extends Astroa{
 		mezua.append("Asteroide: ").append(azkenekoIzena).append(" eguneratuta,").append(" horain: ").append(asteroideBerria.getIzena());
 		System.out.println(mezua);
 	}
-}
-	
+}	

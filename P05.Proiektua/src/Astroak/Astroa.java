@@ -1,6 +1,9 @@
 package Astroak;
 
 import java.time.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 // TODO: Auto-generated Javadoc
@@ -10,31 +13,30 @@ import java.util.Scanner;
 public class Astroa implements intAstro {
 
 
-	/** The izena. */
 	// Atributuoak definitu
 	protected String izena;
 	
-	/** The masa. */
+	/** Masa kilogramotan. */
 	protected double masa;
 	
-	/** The ra graduak. */
-	//Zeruko posizioa ateratzeko aldagaiak
+	//Zeruko posizioa ateratzeko aldagaiak (gradutan eta minututan)
+	/** RA Gradutan. */
 	protected Koordenatuak raGraduak;
     
-    /** The ra minutoak. */
+    /** RA Minututan. */
 	protected Koordenatuak raMinutoak;
     
-    /** The de graduak. */
+    /** DE Gradutan. */
 	protected Koordenatuak deGraduak;
     
-    /** The de minutoak. */
+    /** DE Minututan */
 	protected Koordenatuak deMinutoak;
     
     /** The de minutoak. */
 	protected String iruzkina;
 	
 	/**
-	 * Gets the izena.
+	 * Izena lortu.
 	 *
 	 * @return the izena
 	 */
@@ -44,16 +46,16 @@ public class Astroa implements intAstro {
 	}
 	
 	/**
-	 * Sets the izena.
+	 * Izena jarri.
 	 *
-	 * @param izena the new izena
+	 * @param izena --> izen berria
 	 */
 	public void setIzena(String izena) {
 		this.izena = izena;
 	}
 
 	/**
-	 * Gets the masa.
+	 * Masa lortu.
 	 *
 	 * @return the masa
 	 */
@@ -62,16 +64,16 @@ public class Astroa implements intAstro {
 	}
 	
 	/**
-	 * Sets the masa.
+	 * Masa ezarri.
 	 *
-	 * @param masaBerria the new masa
+	 * @param masaBerria --> masa berria
 	 */
 	public void setMasa(double masaBerria) {
 		this.masa = masaBerria;
 	}
 	
 	/**
-	 * Gets the de graduak.
+	 * de graduak lortu
 	 *
 	 * @return the de graduak
 	 */
@@ -80,9 +82,9 @@ public class Astroa implements intAstro {
 	}
 	
 	/**
-	 * Sets the de graduak.
+	 * de graduak ezarri
 	 *
-	 * @param deGraduak the new de graduak
+	 * @param deGraduak --> de gradu berria
 	 */
 	public void setDeGraduak(Koordenatuak deGraduak) {
 		this.deGraduak = deGraduak;
@@ -198,6 +200,23 @@ public class Astroa implements intAstro {
 	}
 	
 	/**
+	 * Datu motak erakusteko menua.
+	 *
+	 * @return menu
+	 */
+	public static String datuMotaMenu() {
+		
+		String menu = "\nDATU AUKERAKETA\n";
+		menu+="1. Izenaren arabera\n";
+		menu+="2. Masaren arabera\n";
+		menu+="3. RA Koordenatuen arabera\n";
+		menu+="3. DE Koordenatuen arabera\n";
+		menu+="\nAukeratu bat:\n";
+		
+		return menu;
+	}
+	
+	/**
 	 * Aukera kontrola erroreak ez egoteko.
 	 *
 	 * @param menu 		--> Aukeraketa ezberdinak ikusteko menua
@@ -208,7 +227,8 @@ public class Astroa implements intAstro {
 	 * @param tarte2 	--> aukeraketa menuaren tarte maximoa
 	 * @return aukera, erabiltzaileak egin duen aukera.
 	 */
-	public static int aukeraKontrola(String menu, boolean aukeraDa, int aukera, Scanner scanner, int tarte1, int tarte2) {
+	public static int aukeraKontrola(String menu, int aukera, Scanner scanner, int tarte1, int tarte2) {
+		boolean aukeraDa = false;
 		while (!aukeraDa) {
 			System.out.print(menu);
 			String input = scanner.nextLine();
@@ -239,7 +259,8 @@ public class Astroa implements intAstro {
 	 * @param zerrendaLuzera --> zerrendaren luzeera errore kontrola egiteko
 	 * @return aukera, erabiltzaileak egindako aukera
 	 */
-	public static int zerrendaKontrola(String mezua, boolean aukeraDa, int aukera, Scanner scanner, int zerrendaLuzera) {
+	public static int zerrendaKontrola(String mezua, int aukera, Scanner scanner, int zerrendaLuzera) {
+		boolean aukeraDa = false;
 		while (!aukeraDa) {
 			System.out.print(mezua);
 			String input = scanner.nextLine();
@@ -257,7 +278,205 @@ public class Astroa implements intAstro {
 				System.out.println("Zenbaki bat sartu behar duzu.");
 			}
 		}
-		return aukera;
+		return aukera;	
+	}
 	
+	/**
+	 * Koordenatua irakurri graduako formatuan eta errore kontrola.
+	 *
+	 * @param mezua --> koordenatu motaren mezua
+	 * @return koordenatu objektua
+	 */
+	public static Koordenatuak koordenatuaIrakurriGraduak(String mezua) {
+
+		double graduak;
+		boolean baliozkoa = false;
+		Koordenatuak koordenatu = new Koordenatuak(0);
+		Scanner scanner = new Scanner(System.in);
+
+		try {
+			while (!baliozkoa) {
+				System.out.print(mezua);
+				String sarrera = scanner.nextLine();
+
+				try {
+					graduak = Double.parseDouble(sarrera);
+					koordenatu.setZenbakia(graduak);
+					baliozkoa = true;
+				} catch (NumberFormatException e) {
+					System.out.println("Balio okerra. Mesedez, sartu zenbaki bat.");
+				}
+			}
+		} finally {
+			
+		}
+		return koordenatu;	
+	}
+	
+	/**
+	 * Koordenatua irakurri minututako formatuan eta errore kontrola.
+	 *
+	 * @param mezua --> koordenatu motaren mezua
+	 * @return koordenatu objektua
+	 */
+	public static Koordenatuak koordenatuaIrakurriMinutoak(String mezua) {
+
+		double minutoak = 0;
+		boolean baliozkoa = false;
+		Koordenatuak koordenatu = new Koordenatuak(0);
+		Scanner scanner = new Scanner(System.in);
+
+		try {
+			while (!baliozkoa) {
+				System.out.print(mezua);
+				String sarrera = scanner.nextLine();
+
+				try {
+					minutoak = Double.parseDouble(sarrera);
+					if (minutoak >= 0 && minutoak <= 3600) {
+						koordenatu.setZenbakia(minutoak);
+						baliozkoa = true;
+					}	else if (minutoak < 0) {
+						System.out.println("Zenbaki negatiboa, 24 orduko formatua erabili (0 < minutoak < 3600)");
+					}
+				} catch (NumberFormatException e) {
+					System.out.println("Balio okerra. Mesedez, sartu zenbaki bat.");
+				}
+			}
+		} finally {
+			
+		}		
+		return koordenatu;		
+	}
+	
+	/**
+	 * Astroaren datu mota bat eskatu.
+	 *
+	 * @param mezua 			--> erabiltzaileak jakiteko ze datu sartu behar duen
+	 * @param zenbakia			--> datu mota, denbora, distantzia... ahal du izan
+	 * @param scanner			--> erabiltzaileari datua galdetzeko
+	 * @return zenbakia			--> erabiltzaileak sartutako datua bueltatuko du
+	 */
+	public static double datuaEskatu(String mezua, double zenbakia, Scanner scanner) {
+		
+		boolean aukeraDa = false;
+	
+		while (!aukeraDa) {
+			System.out.print(mezua);
+			String sarrera = scanner.nextLine();
+			try {
+				zenbakia = Double.parseDouble(sarrera);
+				if (zenbakia > 0) {
+					aukeraDa = true;
+				} else {
+					System.out.println("Sartu duzun zenbakia negatiboa da");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Zenbaki bat sartu behar da.");
+			}
+		}
+		
+		return zenbakia;
+	}
+	
+	/**
+	 * Astroen zerrenda bistaratzeko metodoa.
+	 *
+	 * @param kometak the kometak
+	 */
+	public static void astroZerrenda(ArrayList<Astroa> astroak) {
+		StringBuilder mezua = new StringBuilder();
+		mezua.append("Sartutako Astroen zerrenda:\n");
+		for (int i = 0; i < astroak.size(); i++) {
+			Astroa astro = astroak.get(i);
+			mezua.append(i).append(". Izena: ").append(astro.getIzena()).append("\n");
+		}
+		System.out.println(mezua.toString());
+
+	}
+	
+	/**
+	 * Astroa ezabatu.
+	 *
+	 * @param Astroak --> Astro mota guztien zerrenda
+	 * @return Astroak --> zerrenda berdina baina sartutako aukeraren astroa ezabaturik
+	 */
+	public static ArrayList<Astroa> astroaEzabatu(ArrayList<Astroa> Astroak) {
+		boolean aukeraDa = false;
+		Scanner scanner = new Scanner(System.in);
+		
+		while (!aukeraDa) {
+			System.out.print("Sartu ezabatu nahi duzun asteroidearen zenbakia. Ateratzeko, zenbaki negatibo bat sartu: ");
+			StringBuilder mezua = new StringBuilder();
+
+			try {
+				int indizea = Integer.parseInt(scanner.nextLine());
+
+				if (indizea >= 0 && indizea < Astroak.size()) {
+					Astroa borratu = (Astroa) Astroak.remove(indizea);
+					mezua.append("Asteroide: ").append(borratu.getIzena()).append(" ezabatuta");
+					System.out.println(mezua);
+					aukeraDa = true;
+				} else if (indizea < 0) {
+					break;
+				} else {
+					System.out.println("Sartutako zenbakia zerrendatik kanpo dago");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Zenbaki bat sartu, mesedez.");
+			}
+		}
+		return Astroak;		
+	}
+	
+	/**
+	 * Astroaren atributoak konparatzeko funtzioa.
+	 *
+	 * @param aukera 		--> nahi den datu motaren aukera
+	 * @param astroak 		--> astroen zerrenda
+	 */
+	public static void datuakKonparatuAstro(int aukera, ArrayList<Astroa> astroak) {
+		Comparator<Astroa> comparator = null;
+		switch (aukera) {
+		case 1:
+			comparator = Comparator.comparing(Astroa::getIzena);
+			break;
+		case 2:
+			comparator = Comparator.comparing(Astroa::getMasa);
+			break;
+		case 3:
+			comparator = Comparator.comparing((Astroa m) -> {
+				Koordenatuak koordenatuak = m.getRaGraduak();
+				return koordenatuak.getZenbakia();
+			});
+			break;
+		case 4:
+			comparator = Comparator.comparing((Astroa m) -> {
+				Koordenatuak koordenatuak = m.getDeGraduak();
+				return koordenatuak.getZenbakia();
+			});
+			break;
+		default:
+			System.out.println("Aukera ez da egokia.");
+			break;
+		}
+		Collections.sort(astroak, comparator);
+		// Emaitza bistaratu
+		StringBuilder mezua = new StringBuilder();
+		mezua.append("Kometen zerrenda aukeratutako kriterioarekin zerrendatuta:\n");
+
+		// Meteoroen zerrenda atera, datu motaren arabera
+		for (int i = 0; i < astroak.size(); i++) {
+			Astroa astroOrdenatua = astroak.get(i);
+
+			mezua.append("\n" + (i + 1)).append(". - Izena: ").append(astroOrdenatua.getIzena()).append("\n");
+			mezua.append("Masa: " + astroOrdenatua.getMasa()).append("\n");
+			mezua.append("RA1: " + astroOrdenatua.getRaGraduak().toStringGraduak() + ("\n"));
+			mezua.append("RA2: " + astroOrdenatua.getRaMinutoak().toStringOrduak() + ("\n"));
+			mezua.append("DE1: " + astroOrdenatua.getDeGraduak().toStringGraduak() + ("\n"));
+			mezua.append("DE2: " + astroOrdenatua.getDeMinutoak().toStringOrduak() + ("\n"));
+
+		}
+		System.out.println(mezua);
 	}
 }
