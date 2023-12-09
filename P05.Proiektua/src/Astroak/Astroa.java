@@ -463,7 +463,7 @@ public class Astroa {
 		Collections.sort(astroak, comparator);
 		// Emaitza bistaratu
 		StringBuilder mezua = new StringBuilder();
-		mezua.append("Kometen zerrenda aukeratutako kriterioarekin zerrendatuta:\n");
+		mezua.append("Astroen zerrenda aukeratutako kriterioarekin zerrendatuta:\n");
 
 		// Meteoroen zerrenda atera, datu motaren arabera
 		for (int i = 0; i < astroak.size(); i++) {
