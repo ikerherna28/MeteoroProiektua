@@ -233,13 +233,14 @@ public class astroaKudeatu {
 			// MENUA HASIERATU
 			while (bukatuDa == true) {
 
-				String menu = "\nMETEORO KUDEAKETA\n\n";
+				String menu = "\n===== METEOROAK KUDEATU =====\n\n";
 				menu+="1. Meteoro berria gehitu\n";
 				menu+="2. Meteoro bat ezabatu\n";
 				menu+="3. Meteoroak datuaren arabera listatu\n";
 				menu+="4. Meteoro bat eguneratu\n";
 				menu+="5. Bukatu exekutatzen\n";
-				menu+="\nAukeratu bat\n";
+				menu+="========================";
+				menu+="\nAukeratu bat:\n";
 
 				boolean aukeraDa = false;
 
